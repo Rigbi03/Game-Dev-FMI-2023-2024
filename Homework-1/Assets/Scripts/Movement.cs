@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public Animator animator;
+
     float horizontal;
 
     [SerializeField]
@@ -19,12 +21,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(horizontal * speed));
     }
     void FixedUpdate(){
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(horizontal * speed,rb.velocity.y);
-
-        
     }
 
     

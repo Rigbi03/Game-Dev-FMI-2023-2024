@@ -7,7 +7,7 @@ public class MovingPlatform : MonoBehaviour
     Rigidbody2D rb2d;
     float horizontal = -1;
 
-    [SerializeField] float speed = 2;
+    [SerializeField] float speed;
 
     void Start()
     {

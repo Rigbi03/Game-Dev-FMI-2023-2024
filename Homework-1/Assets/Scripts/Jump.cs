@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    
+    public Animator animator;
+
     bool isJumping = false;
     bool isOnGround = false;
     // Start is called before the first frame update
@@ -16,7 +17,12 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isJumping)
+        if(isOnGround)
+            animator.SetBool("IsInAir", false);
+        else
+            animator.SetBool("IsInAir", true);
+
+        if (!isJumping)
         {
             isJumping = Input.GetButtonDown("Jump") && isOnGround;
         }
@@ -25,7 +31,7 @@ public class Jump : MonoBehaviour
     void FixedUpdate() 
     {
         if(isJumping)
-        {
+        {   
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0,7), ForceMode2D.Impulse);
             isJumping = false;
         }
